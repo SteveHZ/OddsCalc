@@ -1,0 +1,36 @@
+[% IF data.selections < 2 %]
+	Must be at least two selections !!!
+[% ELSE %]
+	<table>
+		[% fullWidth = data.selections * data.colHeaders %]
+	
+		<th colspan = "[% fullWidth %]">
+			Stake = [% data.stake %] Odds = "[% data.odds %]"
+		</th>
+
+		[% IF data.winCount > 0 %]
+			<tr>
+				<th colspan = "[% data.selections %]">Stakes</th>
+				<th colspan = "[% data.selections %]">Winnings</th>
+				<th colspan = "[% data.selections %]">Profits</th>
+			</tr>
+	
+			[% FOREACH row IN data.array %]
+				<tr>
+					[% FOREACH cell IN row %]
+						<td>[% cell %]</td>
+					[% END %]
+				</tr>
+			[% END %]
+		[% END %]
+	
+		<tfoot>
+			<tr><th colspan = "[% fullWidth %]">
+				[% data.winCount %]
+				[% UNLESS data.winCount == 1 %]
+					combinations. [% ELSE %] combination.
+				[% END %]
+			</th><tr>
+		</tfoot>
+	</table>
+[% END %]

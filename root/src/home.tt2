@@ -1,0 +1,25 @@
+[% META title = 'Perl Odds Calc - Home' -%]
+
+<h2>Perl Odds Calculator</h2>
+
+<hr>
+
+<form id="infoForm">
+	<h4>Enter Odds: 
+	<input type="text" id="odds" name="odds" title="enter odds seperated by spaces" value= "[% data.odds %]" />
+	Stake: 
+	<input type="text" id="stake" name="stake" title="enter stake" value = "[% data.stake %]" /></h4>
+	<h4>Max Loss: 
+	<input type="text" id="maxLoss" name="maxLoss" title="enter maximum allowed loss or leave blank for zero loss" value = "[% data.maxLoss %]" />
+	Incremental value:
+	<select id="incVal" name="incVal" title="incremental amount for individual bets">
+		<option value="1">1</option>
+		<option value="10" selected>10</option>
+		<option value="20">20</option>
+		<option value="50">50</option>
+		<option value="100">100</option>
+	</select></h4>
+	<p><input type="submit" value="OK" id="formSubmit"/></p>
+</form>
+<div id="results">
+</div>

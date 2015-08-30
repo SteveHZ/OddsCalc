@@ -1,0 +1,30 @@
+[% IF no_wrapper %]
+	[% content %]
+[% ELSE %]
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>[% template.title or "Wrapper Test" %]</title>
+		<link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/css/OddsCalc.css') %]" />
+		
+		<script src="[% c.uri_for('/static/js/jquery-2.1.1.js') %]"></script>
+		<script src="[% c.uri_for('/static/js/StripeTables.js') %]"></script>
+		<script src="[% c.uri_for('/static/js/OddsCalc.js') %]"></script>
+	</head>
+
+	<body>
+		<div class="content">
+			<span class="message">[% status_msg %]</span>
+			<span class="error">[% error_msg %]</span>
+			[% content %]
+		</div>
+
+		<div id="footer">
+			<strong id="footer">
+				<br/>[% template.title %]
+				<br/>&copy; 2015 - Zappa. All rights reserved.
+			</strong>
+		</div>
+	</body>
+</html>
+[% END %]
