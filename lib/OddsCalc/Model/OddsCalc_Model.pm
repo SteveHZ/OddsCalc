@@ -134,12 +134,11 @@ sub LoadState {
 	my ($odds, $stake, $maxLoss) = <FH>;
 	close FH;
 
-	my $data = {
+	return {
 		odds => $odds,
 		stake => $stake,
 		maxLoss => $maxLoss,
 	};
-	return $data;
 }
 
 # save current entries
