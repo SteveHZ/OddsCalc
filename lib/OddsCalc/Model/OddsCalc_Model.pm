@@ -3,7 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 use StakesGen;
-use TOdds;
+use MyOdds;
 
 extends 'Catalyst::Model';
 
@@ -33,7 +33,7 @@ sub calculate {
 	my ($self, $params) = @_;
 
 	my (@oddsArray, @bets, @sorted);
-	my ($data, $outcomes, $winCount, $maxCol);
+	my ($outcomes, $winCount, $odds_str, $maxCol);
 	my @lines = ();
 	my $colHeaders = 3;	# stakes, winnings, profit
 
@@ -41,15 +41,19 @@ sub calculate {
 				$params->{stake},
 				$params->{maxLoss} );		
 		
-	@oddsArray = split (/ /,$params->{odds});
+	@oddsArray = split (/ /, $params->{odds});
 	$outcomes = scalar (@oddsArray);
 	
 	if ($outcomes < 2) {
-		$data = { selections => $outcomes, }; # error, go straight to view
+		return {
+			selections => $outcomes,
+		}; # error, go straight to view
 	} else {
 		$winCount = 0;
 
-		push (@bets, TOdds->new ($_)) foreach (@oddsArray);
+		push (@bets, MyOdds->new ($_)) for (@oddsArray);
+		$odds_str = join (', ', map { $_->show () } @bets);
+		
 		my $gen = StakesGen->new ($outcomes, $params->{stake} / $params->{incVal} );
 	
 # anonymous sub for $gen
@@ -57,27 +61,26 @@ sub calculate {
 		my $coderef = sub {
 			my $obj = shift;
 			my (@line) = ();
-			my ($stake, $winnings, $profit, $profitStr, $maxProfit, $flag, $i);
-					
-			$flag = 1;
+			my ($stake, $winnings, $profit, $profitStr, $maxProfit, $i);
+			my $flag = 1;
 			
-			for ($i = 0;$i < $obj->selections() && $flag;$i++) {
+			for ($i = 0; $i < $obj->selections () && $flag; $i++) {
 				$stake = (($obj->index($i)) + 1) * $params->{incVal}; # individual stake
-				if ((($stake * $bets[$i]->ratio())
-					+ $stake - $params->{stake} ) < ( $params->{maxLoss} * -1 ) ) {		# (individual stake * price)  
-						$flag = 0;					  										# + stake back - total stake
+				if ((($stake * $bets[$i]->ratio())											# (individual stake * price)  
+					+ $stake - $params->{stake} ) < ( $params->{maxLoss} * -1 ) ) {			# + stake back - total stake
+						$flag = 0;					  										# < maximum allowed loss
 				}
 			}
 		
 			if ($flag) {
 				# Stakes
-				for ($i = 0;$i < $obj->selections();$i++) {
+				for ($i = 0; $i < $obj->selections (); $i++) {
 					$stake = (($obj->index($i)) + 1) * $params->{incVal};
 					push (@line, $stake);
 				}
 		
 				# Winnings
-				for ($i = 0;$i < $obj->selections();$i++) {
+				for ($i = 0; $i < $obj->selections (); $i++) {
 					$stake = (($obj->index($i)) + 1) * $params->{incVal};
 					$winnings = sprintf ("&pound%.2f", ($stake * $bets[$i]->ratio()));
 					push (@line, $winnings);
@@ -85,7 +88,7 @@ sub calculate {
 
 				# Profit
 				$maxProfit = 0;
-				for ($i = 0;$i < $obj->selections();$i++) {
+				for ($i = 0; $i < $obj->selections (); $i++) {
 					$stake = (($obj->index($i)) + 1) * $params->{incVal};
 					$profit = ($stake * $bets[$i]->ratio()) + $stake - $params->{stake};
 					$profitStr = sprintf ("&pound%.2f", $profit);
@@ -110,22 +113,20 @@ sub calculate {
 		@sorted = sort { @$b[$maxCol] <=>
 						 @$a[$maxCol] } @lines;
 
-		splice ($_, $maxCol) foreach (@sorted);
+		splice ($_, $maxCol) for (@sorted);
 		
-		$data = {
+		return {
 			array => \@sorted,
 			selections => $outcomes,
 			stake => sprintf ("&pound%.2f", $params->{stake} ),
-			odds => $params->{'odds'},
+			odds => $odds_str,
 			colHeaders => $colHeaders,
 			winCount => $winCount,
 		};
 	}
-	return $data;
 }
 
 sub LoadState {
-
 	open(FH, '<', "OddsCalc.dat") # in c:/mine/perl/oddscalc
 		or return {
 			odds => 0, stake => 0, maxLoss => 0,

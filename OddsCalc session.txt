@@ -1,15 +1,15 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="0">
-            <File firstVisibleLine="24" xOffset="0" scrollWidth="970" startPos="579" endPos="579" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\OddsCalc\lib\OddsCalc\Controller\OddsCalc.pm" backupFilePath="" originalFileLastModifTimestamp="1436301709" />
-            <File firstVisibleLine="7" xOffset="0" scrollWidth="1572" startPos="106" endPos="106" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\OddsCalc\lib\OddsCalc\Model\OddsCalc_Model.pm" backupFilePath="" originalFileLastModifTimestamp="1440526832" />
+        <mainView activeIndex="8">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="970" startPos="15" endPos="15" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\OddsCalc\lib\OddsCalc\Controller\OddsCalc.pm" backupFilePath="" originalFileLastModifTimestamp="1440877819" />
+            <File firstVisibleLine="130" xOffset="0" scrollWidth="1572" startPos="3550" endPos="3550" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\OddsCalc\lib\OddsCalc\Model\OddsCalc_Model.pm" backupFilePath="C:\Users\steve\AppData\Roaming\Notepad++\backup\OddsCalc_Model.pm@2015-09-08_121601" originalFileLastModifTimestamp="1441004922" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="1490" startPos="366" endPos="366" selMode="0" lang="HTML" encoding="-1" filename="C:\Mine\perl\OddsCalc\root\src\home.tt2" backupFilePath="" originalFileLastModifTimestamp="1435960661" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="1570" startPos="421" endPos="421" selMode="0" lang="HTML" encoding="-1" filename="C:\Mine\perl\OddsCalc\root\src\wrapper.tt2" backupFilePath="" originalFileLastModifTimestamp="1435490047" />
-            <File firstVisibleLine="4" xOffset="0" scrollWidth="1030" startPos="526" endPos="526" selMode="0" lang="Javascript" encoding="-1" filename="C:\Mine\perl\OddsCalc\root\static\js\OddsCalc.js" backupFilePath="" originalFileLastModifTimestamp="1435859809" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="700" startPos="0" endPos="0" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\Modules\SeriesGen.pm" backupFilePath="" originalFileLastModifTimestamp="1439834876" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1030" startPos="2" endPos="2" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\Modules\StakesGen.pm" backupFilePath="" originalFileLastModifTimestamp="1438203268" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1030" startPos="0" endPos="0" selMode="0" lang="Javascript" encoding="-1" filename="C:\Mine\perl\OddsCalc\root\static\js\OddsCalc.js" backupFilePath="" originalFileLastModifTimestamp="1435859809" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="700" startPos="0" endPos="0" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\Modules\SeriesGen.pm" backupFilePath="" originalFileLastModifTimestamp="1441541719" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1030" startPos="2" endPos="2" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\Modules\StakesGen.pm" backupFilePath="" originalFileLastModifTimestamp="1441544847" />
             <File firstVisibleLine="0" xOffset="0" scrollWidth="1050" startPos="149" endPos="149" selMode="0" lang="HTML" encoding="-1" filename="C:\Mine\perl\OddsCalc\root\src\results.tt2" backupFilePath="" originalFileLastModifTimestamp="1435861643" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="460" startPos="0" endPos="0" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\Modules\TOdds.pm" backupFilePath="" originalFileLastModifTimestamp="1438521684" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="370" startPos="0" endPos="0" selMode="0" lang="Perl" encoding="-1" filename="C:\Mine\perl\Modules\MyOdds.pm" backupFilePath="" originalFileLastModifTimestamp="1441710838" />
         </mainView>
         <subView activeIndex="0" />
     </Session>
