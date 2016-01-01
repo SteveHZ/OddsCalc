@@ -29,13 +29,19 @@ it under the same terms as Perl itself.
 
 =cut
 
+my $datafile = 'C://Mine/perl/OddsCalc/root/static/data/OddsCalc.dat';
+
 sub calculate {
 	my ($self, $params) = @_;
 
 	my (@oddsArray, @bets, @sorted);
-	my ($outcomes, $winCount, $odds_str, $maxCol);
 	my @lines = ();
+	my ($outcomes, $winCount, $odds_str, $maxCol);
 	my $colHeaders = 3;	# stakes, winnings, profit
+
+	for (keys (%$params)) {
+		$params->{$_} = 0 if (! $params->{$_});
+	}
 
 	SaveState (	$params->{odds},
 				$params->{stake},
@@ -48,6 +54,7 @@ sub calculate {
 		return {
 			selections => $outcomes,
 		}; # error, go straight to view
+
 	} else {
 		$winCount = 0;
 
@@ -113,7 +120,7 @@ sub calculate {
 		@sorted = sort { @$b[$maxCol] <=>
 						 @$a[$maxCol] } @lines;
 
-		splice ($_, $maxCol) for (@sorted);
+		splice (@$_, $maxCol) for (@sorted);
 		
 		return {
 			array => \@sorted,
@@ -127,7 +134,7 @@ sub calculate {
 }
 
 sub LoadState {
-	open(FH, '<', "OddsCalc.dat") # in c:/mine/perl/oddscalc
+	open(FH, '<', $datafile) # in c:/mine/perl/oddscalc
 		or return {
 			odds => 0, stake => 0, maxLoss => 0,
 		};
@@ -147,7 +154,7 @@ sub LoadState {
 sub SaveState {
 	my ($odds, $stake, $maxLoss) = @_;
 
-	open (FH, '+>', "OddsCalc.dat") # opens new file, deletes old file
+	open (FH, '+>', $datafile) # opens new file, deletes old file
 		or die "\n Can't open data file !!";
 
 	print FH "$odds \n$stake \n$maxLoss";
