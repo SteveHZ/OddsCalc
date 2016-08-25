@@ -47,7 +47,7 @@ sub calculate {
 				$params->{stake},
 				$params->{maxLoss} );		
 		
-	@oddsArray = split (/ /, $params->{odds});
+	@oddsArray = split (' ', $params->{odds});
 	$outcomes = scalar (@oddsArray);
 	
 	if ($outcomes < 2) {
@@ -134,13 +134,13 @@ sub calculate {
 }
 
 sub LoadState {
-	open(FH, '<', $datafile) # in c:/mine/perl/oddscalc
+	open (my $fh, '<', $datafile)
 		or return {
 			odds => 0, stake => 0, maxLoss => 0,
 		};
 
-	my ($odds, $stake, $maxLoss) = <FH>;
-	close FH;
+	my ($odds, $stake, $maxLoss) = <$fh>;
+	close $fh;
 
 	return {
 		odds => $odds,
@@ -154,11 +154,11 @@ sub LoadState {
 sub SaveState {
 	my ($odds, $stake, $maxLoss) = @_;
 
-	open (FH, '+>', $datafile) # opens new file, deletes old file
+	open (my $fh, '+>', $datafile) # opens new file, deletes old file
 		or die "\n Can't open data file !!";
 
-	print FH "$odds \n$stake \n$maxLoss";
-	close FH;
+	print $fh "$odds \n$stake \n$maxLoss";
+	close $fh;
 }
 
 __PACKAGE__->meta->make_immutable;
